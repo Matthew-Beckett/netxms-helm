@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  netxms:
+    image: ghcr.io/matthew-beckett/netxms_server:hotfix-disable-included-agent-c8b2b55
+    volumes:
+       - netxms-config:/opt/netxmsd
+       - netxms-data:/data
+    ports:
+       - 4701:4701 # Console listener
+       - 4703:4703 # Desktop agent listener
+       - 4747:4747 # Mobile agent listener
+       - 161:161 # SNMP
+       - 162:162 # SNMP
+    environment:
+       NETXMS_DB_DRIVER: 
+       NETXMS_DB_TYPE: 
+       NETXMS_DB_NAME: 
+       NETXMS_DB_LOGIN: 
+       NETXMS_DB_PASSWORD: 
+       NETXMS_DB_SERVER: 
+       NETXMS_ENABLE_ZONING: "true"
+       NETXMS_GENERATE_SELF_SIGNED: "true"
+       NETXMS_UNLOCK_ON_STARTUP: "true"
+volumes:
+   netxms-config:
+   netxms-data:
